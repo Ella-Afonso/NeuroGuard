@@ -1,0 +1,97 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+*.whl
+pip-wheel-metadata/
+share/python-wheels/
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ---- Testing, type-checking, linting ----
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+.tox/
+.nox/
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ---- IDEs / editors ----
+.idea/
+.vscode/
+*.code-workspace
+*.swp
+*.swo
+*~
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Secrets / environment ----
+.env
+.env.local
+.env.*.local
+!.env.example
+*.pem
+*.key
+secrets/
+
+# ---- Data: never commit raw / interim / processed contents ----
+data/raw/*
+data/interim/*
+data/processed/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/**/README.md
+!data/**/MANIFEST*
+
+# ---- Experiment outputs ----
+results/runs/*
+!results/runs/.gitkeep
+!results/runs/README.md
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Trained / large model artefacts ----
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.safetensors
+*.h5
+*.onnx
+
+# ---- Build / docs ----
+docs/_build/
+site/
+
+# ---- Personal scratch notes (not part of the public repo) ----
+Notes/
