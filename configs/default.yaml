@@ -1,0 +1,21 @@
+# NeuroGuard — Global defaults
+# Override per-experiment in configs/experiments/*.yaml
+
+paths:
+  data_dir: data
+  results_dir: results
+
+experiment:
+  random_seed: 42
+  n_seeds: 5
+  max_concurrent_requests: 5
+  cost_limit_usd: 10.0
+
+logging:
+  level: INFO
+  format: json  # "json" for production/CI, "console" for local dev
+
+evidence:
+  source: clinicaltrials
+  condition: "Alzheimer Disease"
+  max_studies: 500
