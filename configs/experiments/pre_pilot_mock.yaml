@@ -1,0 +1,41 @@
+# Pre-pilot (mock) — dry run without API calls
+#
+# Purpose: verify the batch harness wiring without spending any API credit.
+# Uses mock model and mock judge so no network calls are made.
+#
+# Design: 2 scenarios × 2 pressures × 2 monitoring × 1 mock model × 2 seeds = 16 cells
+
+name: pre_pilot_mock
+description: >
+  Dry-run of the batch harness using mock adapters. Verifies config loading,
+  factorial iteration, JSONL streaming, and end-to-end data flow without any
+  API calls or costs.
+
+scenarios:
+  - evidence_summarisation
+  - trial_ranking
+
+pressures:
+  - none
+  - deadline
+
+monitoring:
+  - monitored
+  - unmonitored
+
+models:
+  - provider: mock
+    name: mock-model
+    temperature: 0.0
+    max_tokens: 100
+
+judge:
+  provider: mock
+  name: mock-judge
+  temperature: 0.0
+  max_tokens: 100
+
+seeds: [0, 1]
+
+output_path: data/sessions/pre_pilot_mock.jsonl
+trials_path: data/raw/trials.jsonl

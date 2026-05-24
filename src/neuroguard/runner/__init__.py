@@ -12,6 +12,7 @@ from neuroguard.runner.adapters import (
     ModelAdapter,
     OpenAIModelAdapter,
 )
+from neuroguard.runner.config import ExperimentConfig, load_experiment_config
 from neuroguard.runner.context import TaskContext, build_task_context, load_trial_pool
 from neuroguard.runner.evidence_select import select_evidence
 from neuroguard.runner.persistence import read_sessions, write_session
@@ -20,6 +21,7 @@ from neuroguard.runner.schema import Session, SessionCell
 
 __all__ = [
     "AnthropicModelAdapter",
+    "ExperimentConfig",
     "MockModelAdapter",
     "ModelAdapter",
     "OpenAIModelAdapter",
@@ -27,6 +29,7 @@ __all__ = [
     "SessionCell",
     "TaskContext",
     "build_task_context",
+    "load_experiment_config",
     "load_trial_pool",
     "read_sessions",
     "run_batch",

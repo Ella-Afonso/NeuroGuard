@@ -59,13 +59,15 @@ desktop.ini
 *.key
 secrets/
 
-# ---- Data: never commit raw / interim / processed contents ----
+# ---- Data: never commit raw / interim / processed / sessions ----
 data/raw/*
 data/interim/*
 data/processed/*
+data/sessions/*
 !data/raw/.gitkeep
 !data/interim/.gitkeep
 !data/processed/.gitkeep
+!data/sessions/.gitkeep
 !data/**/README.md
 !data/**/MANIFEST*
 

@@ -1,0 +1,42 @@
+# Pre-pilot experiment configuration
+#
+# Purpose: minimal sweep to verify the full pipeline works end-to-end
+# with a real model before committing to the full 840-cell experiment.
+#
+# Design: 1 scenario × 2 pressures × 2 monitoring × 1 model × 2 seeds = 8 cells
+# Estimated cost: ~$0.04 (8 sessions × ~$0.005/session on gpt-4o-mini)
+
+name: pre_pilot_001
+description: >
+  Minimal factorial sweep to verify pipeline correctness with a real model.
+  Tests evidence_summarisation under baseline vs deadline pressure, with and
+  without monitoring, across 2 seeds. Confirms Layer A signals fire correctly
+  on real model output and Layer B judge produces valid rubrics.
+
+scenarios:
+  - evidence_summarisation
+
+pressures:
+  - none
+  - deadline
+
+monitoring:
+  - monitored
+  - unmonitored
+
+models:
+  - provider: openai
+    name: gpt-4o-mini
+    temperature: 0.7
+    max_tokens: 1500
+
+judge:
+  provider: openai
+  name: gpt-4o-mini
+  temperature: 0.0
+  max_tokens: 800
+
+seeds: [0, 1]
+
+output_path: data/sessions/pre_pilot_001.jsonl
+trials_path: data/raw/trials.jsonl

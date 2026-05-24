@@ -5,6 +5,9 @@ Subcommands are added by later steps (fetch-evidence, run-experiment, etc.).
 """
 
 import typer
+from dotenv import load_dotenv
+
+load_dotenv()  # load .env into os.environ before any command runs
 
 app = typer.Typer(
     name="neuroguard",
@@ -159,6 +162,144 @@ def run_session_cmd(
     typer.echo(f"layer_a unsafe: {session.layer_a.overall_unsafe}")
     typer.echo(f"triggered: {session.layer_a.triggered_signal_ids()}")
     typer.echo(f"appended -> {out}")
+
+
+@app.command("run-batch")
+def run_batch_cmd(
+    config: str = typer.Option(
+        ...,
+        help="Path to experiment config YAML (e.g. configs/experiments/pre_pilot.yaml).",
+    ),
+    dry_run: bool = typer.Option(
+        False, help="Print the plan (total cells, cost estimate) without running."
+    ),
+) -> None:
+    """Run a full factorial experiment sweep from a YAML config file.
+
+    Iterates over all (scenario x pressure x monitoring x model x seed) cells
+    defined in the config. Sessions are streamed to the configured output JSONL
+    so a crashed run loses at most the in-flight session.
+    """
+    import json
+    import time
+    from pathlib import Path
+
+    from neuroguard.judge.adapters import MockJudgeAdapter, OpenAIJudgeAdapter
+    from neuroguard.monitoring import get_monitoring
+    from neuroguard.pressures import get_pressure
+    from neuroguard.runner import (
+        AnthropicModelAdapter,
+        MockModelAdapter,
+        OpenAIModelAdapter,
+        load_trial_pool,
+        run_session,
+        write_session,
+    )
+    from neuroguard.runner.config import load_experiment_config
+    from neuroguard.scenarios import get_scenario
+    from neuroguard.synthetic import load_patient_profiles, load_research_proposals
+
+    cfg = load_experiment_config(Path(config))
+    typer.echo(f"Experiment: {cfg.name}")
+    typer.echo(f"Total cells: {cfg.total_cells()}")
+    typer.echo(f"Cost estimate: ${cfg.cost_estimate_usd():.2f}")
+    typer.echo(f"Output: {cfg.output_path}")
+
+    if dry_run:
+        typer.echo("\n[dry-run] No sessions will be executed.")
+        return
+
+    # Resolve shared resources
+    trial_pool = load_trial_pool(Path(cfg.trials_path))
+    patient_pool = load_patient_profiles()
+    proposal_pool = load_research_proposals()
+
+    # Resolve scenarios, pressures, monitoring
+    scenarios = [get_scenario(sid) for sid in cfg.scenarios]
+    pressures = [get_pressure(pid) for pid in cfg.pressures]
+    monitorings = [get_monitoring(mid) for mid in cfg.monitoring]
+
+    # Build judge adapter (shared across all cells)
+    judge_adapter = None
+    if cfg.judge.provider == "mock":
+        judge_adapter = MockJudgeAdapter(
+            json.dumps(
+                {
+                    "scores": {
+                        "sycophancy": 0,
+                        "coherence": 0,
+                        "hedging_faithfulness": 0,
+                        "evidence_faithfulness": 0,
+                        "overall_alignment": 0,
+                    },
+                    "justifications": {},
+                    "concerns": [],
+                }
+            ),
+            model_name=cfg.judge.name or "mock-judge",
+        )
+    elif cfg.judge.provider == "openai":
+        judge_adapter = OpenAIJudgeAdapter(
+            model_name=cfg.judge.name,
+            temperature=cfg.judge.temperature,
+            max_tokens=cfg.judge.max_tokens,
+        )
+
+    # Run factorial
+    out = Path(cfg.output_path)
+    completed = 0
+    total = cfg.total_cells()
+    t_start = time.time()
+
+    for model_spec in cfg.models:
+        # Build model adapter for this model
+        if model_spec.provider == "mock":
+            model_adapter = MockModelAdapter(
+                "(mock model response)", model_name=model_spec.name
+            )
+        elif model_spec.provider == "openai":
+            model_adapter = OpenAIModelAdapter(
+                model_name=model_spec.name,
+                temperature=model_spec.temperature,
+                max_tokens=model_spec.max_tokens,
+            )
+        elif model_spec.provider == "anthropic":
+            model_adapter = AnthropicModelAdapter(
+                model_name=model_spec.name,
+                temperature=model_spec.temperature,
+                max_tokens=model_spec.max_tokens,
+            )
+        else:
+            raise typer.BadParameter(f"Unknown model provider: {model_spec.provider}")
+
+        for scenario in scenarios:
+            for pressure in pressures:
+                for monitoring_cond in monitorings:
+                    for seed in cfg.seeds:
+                        session = run_session(
+                            scenario=scenario,
+                            pressure=pressure,
+                            monitoring=monitoring_cond,
+                            seed=seed,
+                            model_adapter=model_adapter,
+                            judge_adapter=judge_adapter,
+                            trial_pool=trial_pool,
+                            patient_pool=patient_pool,
+                            proposal_pool=proposal_pool,
+                        )
+                        write_session(session, out)
+                        completed += 1
+                        elapsed = time.time() - t_start
+                        rate = completed / elapsed if elapsed > 0 else 0
+                        typer.echo(
+                            f"[{completed}/{total}] {session.session_id} "
+                            f"unsafe={session.layer_a.overall_unsafe} "
+                            f"({rate:.1f} sess/s)"
+                        )
+
+    elapsed_total = time.time() - t_start
+    typer.echo(f"\nBatch complete: {completed} sessions in {elapsed_total:.1f}s")
+    typer.echo(f"Output: {out}")
 
 
 if __name__ == "__main__":
