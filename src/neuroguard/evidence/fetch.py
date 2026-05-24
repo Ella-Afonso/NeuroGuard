@@ -6,7 +6,7 @@ through the TrialRecord schema, and writes JSONL to data/raw/.
 
 from pathlib import Path
 
-import httpx
+from curl_cffi.requests import AsyncSession
 from tenacity import retry, stop_after_attempt, wait_exponential
 from tqdm import tqdm
 
@@ -18,6 +18,12 @@ logger = get_logger(__name__)
 CTGOV_API_BASE = "https://clinicaltrials.gov/api/v2/studies"
 DEFAULT_PAGE_SIZE = 100
 
+# CT.gov sits behind Cloudflare, which performs TLS-fingerprint (JA3/JA4)
+# detection. The default Python httpx TLS handshake is fingerprinted as a
+# bot and returns 403, regardless of headers. We use curl-cffi's libcurl-
+# impersonate backend to present a real Chrome TLS fingerprint.
+IMPERSONATE_PROFILE = "chrome"
+
 
 @retry(
     stop=stop_after_attempt(3),
@@ -25,7 +31,7 @@ DEFAULT_PAGE_SIZE = 100
     reraise=True,
 )
 async def _fetch_page(
-    client: httpx.AsyncClient,
+    client: AsyncSession,
     condition: str,
     page_size: int,
     page_token: str | None = None,
@@ -33,7 +39,7 @@ async def _fetch_page(
     """Fetch a single page from the CT.gov API v2.
 
     Args:
-        client: httpx async client.
+        client: curl-cffi async session with browser TLS impersonation.
         condition: Condition search term (e.g. "Alzheimer Disease").
         page_size: Number of studies per page.
         page_token: Pagination token for next page (None for first).
@@ -42,7 +48,7 @@ async def _fetch_page(
         Raw JSON response dict.
 
     Raises:
-        httpx.HTTPStatusError: On non-2xx responses after retries.
+        curl_cffi error: On non-2xx responses after retries.
     """
     params: dict = {
         "query.cond": condition,
@@ -91,7 +97,10 @@ async def fetch_trials(
         page_size=page_size,
     )
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with AsyncSession(
+        timeout=30.0,
+        impersonate=IMPERSONATE_PROFILE,
+    ) as client:
         with tqdm(total=max_studies, desc="Fetching trials", unit="study") as pbar:
             while len(records) < max_studies:
                 remaining = max_studies - len(records)
@@ -133,9 +142,10 @@ async def fetch_trials(
                 if not page_token:
                     break
 
-    # Write JSONL cache
-    safe_condition = condition.lower().replace(" ", "_")
-    output_path = output_dir / f"clinicaltrials_{safe_condition}.jsonl"
+    # Write JSONL cache. The canonical filename is `trials.jsonl` so the
+    # runner can find it without extra config. The condition is recorded in
+    # the logs and in each record's source URL.
+    output_path = output_dir / "trials.jsonl"
     with open(output_path, "w", encoding="utf-8") as f:
         for record in records:
             f.write(record.model_dump_json() + "\n")
