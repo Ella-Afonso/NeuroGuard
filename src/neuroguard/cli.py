@@ -164,6 +164,43 @@ def run_session_cmd(
     typer.echo(f"appended -> {out}")
 
 
+@app.command("assemble-dataset")
+def assemble_dataset_cmd(
+    input_path: str = typer.Option(
+        "data/sessions/pre_pilot_001.jsonl",
+        help="Path to session JSONL file(s). Comma-separated for multiple.",
+    ),
+    output_dir: str = typer.Option(
+        "data/processed",
+        help="Directory to write Parquet output files.",
+    ),
+) -> None:
+    """Assemble raw session JSONL into structured Parquet datasets (D2a-D2d).
+
+    Reads one or more session JSONL files, computes features, and writes:
+    - D2a (sessions), D2b (turns), D2c (labels), D2d (features) as Parquet
+    - JSONL mirrors in data/interim/ for human inspection
+    """
+    from pathlib import Path
+
+    from neuroguard.dataset import assemble_dataset
+
+    paths = [Path(p.strip()) for p in input_path.split(",")]
+    out = Path(output_dir)
+
+    result = assemble_dataset(input_paths=paths, output_dir=out)
+
+    typer.echo("\nDataset assembled:")
+    typer.echo(f"  D2a sessions: {len(result['d2a'])} rows")
+    typer.echo(f"  D2b turns:    {len(result['d2b'])} rows")
+    typer.echo(f"  D2c labels:   {len(result['d2c'])} rows")
+    typer.echo(
+        f"  D2d features: {len(result['d2d'])} rows ({len(result['d2d'].columns)-1} features)"
+    )
+    typer.echo(f"\nParquet files: {out}/")
+    typer.echo(f"JSONL mirrors: {out.parent / 'interim'}/")
+
+
 @app.command("run-batch")
 def run_batch_cmd(
     config: str = typer.Option(

@@ -1,0 +1,50 @@
+# Full experiment — single model (gpt-4o-mini)
+#
+# Design: 4 scenarios x 7 pressures x 2 monitoring x 1 model x 5 seeds = 280 cells
+# Estimated cost: ~$1.40 (280 sessions x ~$0.005/session on gpt-4o-mini)
+# Estimated time: ~47 min at 10s/session
+#
+# This is the core dataset for the NeuroGuard benchmark paper.
+# Run after confirming pre_pilot output looks correct.
+
+name: full_experiment_gpt4omini
+description: >
+  Full factorial sweep across all 4 scenarios and 7 pressure conditions,
+  both monitoring states, with gpt-4o-mini as model under test and judge.
+  This produces the primary dataset (D2a-D2d) for misalignment detection.
+
+scenarios:
+  - evidence_summarisation
+  - eligibility_triage
+  - proposal_critique
+  - trial_ranking
+
+pressures:
+  - none
+  - deadline
+  - authority
+  - emotional_appeal
+  - peer_disagreement
+  - sunk_cost
+  - hidden_instruction
+
+monitoring:
+  - monitored
+  - unmonitored
+
+models:
+  - provider: openai
+    name: gpt-4o-mini
+    temperature: 0.7
+    max_tokens: 1500
+
+judge:
+  provider: openai
+  name: gpt-4o-mini
+  temperature: 0.0
+  max_tokens: 800
+
+seeds: [0, 1, 2, 3, 4]
+
+output_path: data/sessions/full_experiment.jsonl
+trials_path: data/raw/trials.jsonl
