@@ -1,0 +1,440 @@
+{
+  "step": 17,
+  "description": "Advanced model comparison with nested CV and hyperparameter tuning",
+  "timestamp": "2026-05-25T12:03:48.019474",
+  "seed": 42,
+  "n_samples": 280,
+  "n_unsafe": 38,
+  "n_safe": 242,
+  "outer_cv_folds": 5,
+  "inner_cv_folds": 3,
+  "feature_type": {
+    "structured": {
+      "n_features": 25,
+      "features": [
+        "response_length_words",
+        "response_length_chars",
+        "sentence_count",
+        "avg_sentence_length",
+        "paragraph_count",
+        "hedging_count",
+        "hedging_freq",
+        "certainty_count",
+        "certainty_freq",
+        "hedging_certainty_ratio",
+        "nct_id_count",
+        "nct_id_unique",
+        "citation_density",
+        "bullet_count",
+        "numbered_list_count",
+        "refusal_count",
+        "is_monitored",
+        "is_baseline_pressure",
+        "has_refusal",
+        "has_citations",
+        "has_hedging",
+        "has_certainty",
+        "scenario_id_enc",
+        "pressure_id_enc",
+        "monitoring_id_enc"
+      ]
+    },
+    "text": {
+      "method": "TF-IDF",
+      "source": "concatenated assistant turns"
+    }
+  },
+  "models": {
+    "Logistic Regression": {
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.8645909256559767,
+          "std": 0.06829150915841543
+        },
+        "pr_auc": {
+          "mean": 0.6634903919107946,
+          "std": 0.14342543692187998
+        },
+        "f1": {
+          "mean": 0.6218868850447797,
+          "std": 0.08063347884727211
+        },
+        "mcc": {
+          "mean": 0.5790457037228374,
+          "std": 0.08988558595484243
+        }
+      },
+      "best_params_per_fold": [
+        {
+          "clf__solver": "saga",
+          "clf__penalty": "l1",
+          "clf__C": "1.0"
+        },
+        {
+          "clf__solver": "saga",
+          "clf__penalty": "l1",
+          "clf__C": "1.0"
+        },
+        {
+          "clf__solver": "saga",
+          "clf__penalty": "l2",
+          "clf__C": "0.1"
+        },
+        {
+          "clf__solver": "saga",
+          "clf__penalty": "l2",
+          "clf__C": "0.1"
+        },
+        {
+          "clf__solver": "saga",
+          "clf__penalty": "l1",
+          "clf__C": "0.5"
+        }
+      ]
+    },
+    "Random Forest": {
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.9272230320699709,
+          "std": 0.04135461885374472
+        },
+        "pr_auc": {
+          "mean": 0.8035705266955266,
+          "std": 0.1239190681011498
+        },
+        "f1": {
+          "mean": 0.6902300314065021,
+          "std": 0.13415062540016862
+        },
+        "mcc": {
+          "mean": 0.6503292841673673,
+          "std": 0.15175815152620784
+        }
+      },
+      "best_params_per_fold": [
+        {
+          "clf__n_estimators": "200",
+          "clf__min_samples_leaf": "10",
+          "clf__max_features": "0.5",
+          "clf__max_depth": "None"
+        },
+        {
+          "clf__n_estimators": "300",
+          "clf__min_samples_leaf": "3",
+          "clf__max_features": "log2",
+          "clf__max_depth": "7"
+        },
+        {
+          "clf__n_estimators": "100",
+          "clf__min_samples_leaf": "3",
+          "clf__max_features": "0.5",
+          "clf__max_depth": "10"
+        },
+        {
+          "clf__n_estimators": "200",
+          "clf__min_samples_leaf": "3",
+          "clf__max_features": "log2",
+          "clf__max_depth": "7"
+        },
+        {
+          "clf__n_estimators": "300",
+          "clf__min_samples_leaf": "5",
+          "clf__max_features": "0.5",
+          "clf__max_depth": "5"
+        }
+      ]
+    },
+    "XGBoost": {
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.8976463799805636,
+          "std": 0.05155261722810783
+        },
+        "pr_auc": {
+          "mean": 0.7344888674399952,
+          "std": 0.1733242429679876
+        },
+        "f1": {
+          "mean": 0.675,
+          "std": 0.17232743705553732
+        },
+        "mcc": {
+          "mean": 0.6336294332397877,
+          "std": 0.19413166668841078
+        }
+      },
+      "best_params_per_fold": [
+        {
+          "clf__subsample": "0.9",
+          "clf__reg_lambda": "5.0",
+          "clf__reg_alpha": "1.0",
+          "clf__n_estimators": "300",
+          "clf__max_depth": "3",
+          "clf__learning_rate": "0.1",
+          "clf__colsample_bytree": "1.0"
+        },
+        {
+          "clf__subsample": "0.7",
+          "clf__reg_lambda": "5.0",
+          "clf__reg_alpha": "1.0",
+          "clf__n_estimators": "500",
+          "clf__max_depth": "7",
+          "clf__learning_rate": "0.05",
+          "clf__colsample_bytree": "0.6"
+        },
+        {
+          "clf__subsample": "1.0",
+          "clf__reg_lambda": "1.0",
+          "clf__reg_alpha": "0",
+          "clf__n_estimators": "100",
+          "clf__max_depth": "5",
+          "clf__learning_rate": "0.2",
+          "clf__colsample_bytree": "0.8"
+        },
+        {
+          "clf__subsample": "0.8",
+          "clf__reg_lambda": "1.0",
+          "clf__reg_alpha": "0",
+          "clf__n_estimators": "300",
+          "clf__max_depth": "7",
+          "clf__learning_rate": "0.2",
+          "clf__colsample_bytree": "0.8"
+        },
+        {
+          "clf__subsample": "1.0",
+          "clf__reg_lambda": "5.0",
+          "clf__reg_alpha": "0.1",
+          "clf__n_estimators": "500",
+          "clf__max_depth": "5",
+          "clf__learning_rate": "0.05",
+          "clf__colsample_bytree": "0.8"
+        }
+      ]
+    },
+    "LightGBM": {
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.9205205296404276,
+          "std": 0.050788921230756325
+        },
+        "pr_auc": {
+          "mean": 0.8081439629497528,
+          "std": 0.0963592889510764
+        },
+        "f1": {
+          "mean": 0.6225938312894834,
+          "std": 0.08179957486992093
+        },
+        "mcc": {
+          "mean": 0.5786133334589989,
+          "std": 0.09920549052987934
+        }
+      },
+      "best_params_per_fold": [
+        {
+          "clf__subsample": "0.7",
+          "clf__reg_lambda": "2.0",
+          "clf__reg_alpha": "0.1",
+          "clf__num_leaves": "31",
+          "clf__n_estimators": "100",
+          "clf__max_depth": "7",
+          "clf__learning_rate": "0.1",
+          "clf__colsample_bytree": "0.8"
+        },
+        {
+          "clf__subsample": "0.7",
+          "clf__reg_lambda": "5.0",
+          "clf__reg_alpha": "1.0",
+          "clf__num_leaves": "63",
+          "clf__n_estimators": "500",
+          "clf__max_depth": "5",
+          "clf__learning_rate": "0.01",
+          "clf__colsample_bytree": "0.6"
+        },
+        {
+          "clf__subsample": "0.7",
+          "clf__reg_lambda": "5.0",
+          "clf__reg_alpha": "1.0",
+          "clf__num_leaves": "63",
+          "clf__n_estimators": "500",
+          "clf__max_depth": "5",
+          "clf__learning_rate": "0.01",
+          "clf__colsample_bytree": "0.6"
+        },
+        {
+          "clf__subsample": "0.9",
+          "clf__reg_lambda": "1.0",
+          "clf__reg_alpha": "1.0",
+          "clf__num_leaves": "15",
+          "clf__n_estimators": "100",
+          "clf__max_depth": "3",
+          "clf__learning_rate": "0.05",
+          "clf__colsample_bytree": "0.8"
+        },
+        {
+          "clf__subsample": "1.0",
+          "clf__reg_lambda": "1.0",
+          "clf__reg_alpha": "1.0",
+          "clf__num_leaves": "31",
+          "clf__n_estimators": "200",
+          "clf__max_depth": "3",
+          "clf__learning_rate": "0.05",
+          "clf__colsample_bytree": "0.6"
+        }
+      ]
+    },
+    "SVM (RBF)": {
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.8570646562196306,
+          "std": 0.08226837463793042
+        },
+        "pr_auc": {
+          "mean": 0.5841385821196052,
+          "std": 0.22776279343582462
+        },
+        "f1": {
+          "mean": 0.40849816849816845,
+          "std": 0.26665690518703444
+        },
+        "mcc": {
+          "mean": 0.346476893718936,
+          "std": 0.28450699459130785
+        }
+      },
+      "best_params_per_fold": [
+        {
+          "clf__gamma": "0.1",
+          "clf__C": "0.1"
+        },
+        {
+          "clf__gamma": "0.01",
+          "clf__C": "10.0"
+        },
+        {
+          "clf__gamma": "0.01",
+          "clf__C": "10.0"
+        },
+        {
+          "clf__gamma": "0.01",
+          "clf__C": "10.0"
+        },
+        {
+          "clf__gamma": "0.01",
+          "clf__C": "10.0"
+        }
+      ]
+    },
+    "MLP": {
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.8407464771622936,
+          "std": 0.08082117188246427
+        },
+        "pr_auc": {
+          "mean": 0.6462197560819869,
+          "std": 0.13562170484110392
+        },
+        "f1": {
+          "mean": 0.429047619047619,
+          "std": 0.32023765268158483
+        },
+        "mcc": {
+          "mean": 0.43091495596275176,
+          "std": 0.30658493995950875
+        }
+      },
+      "best_params_per_fold": [
+        {
+          "clf__learning_rate_init": "0.01",
+          "clf__hidden_layer_sizes": "(128, 64)",
+          "clf__alpha": "0.01"
+        },
+        {
+          "clf__learning_rate_init": "0.01",
+          "clf__hidden_layer_sizes": "(64, 32)",
+          "clf__alpha": "0.001"
+        },
+        {
+          "clf__learning_rate_init": "0.01",
+          "clf__hidden_layer_sizes": "(128,)",
+          "clf__alpha": "0.1"
+        },
+        {
+          "clf__learning_rate_init": "0.01",
+          "clf__hidden_layer_sizes": "(128,)",
+          "clf__alpha": "0.1"
+        },
+        {
+          "clf__learning_rate_init": "0.01",
+          "clf__hidden_layer_sizes": "(128,)",
+          "clf__alpha": "0.1"
+        }
+      ]
+    },
+    "TF-IDF Text Classifier": {
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.944996659378037,
+          "std": 0.048915051502577585
+        },
+        "pr_auc": {
+          "mean": 0.8746913674690603,
+          "std": 0.09158285479627883
+        },
+        "f1": {
+          "mean": 0.7967320261437909,
+          "std": 0.0685651756037001
+        },
+        "mcc": {
+          "mean": 0.7716757078461148,
+          "std": 0.08084754802094855
+        }
+      },
+      "best_params_per_fold": [
+        {
+          "tfidf__ngram_range": "(1, 3)",
+          "tfidf__min_df": "3",
+          "tfidf__max_features": "10000",
+          "clf__solver": "saga",
+          "clf__penalty": "l2",
+          "clf__C": "0.5"
+        },
+        {
+          "tfidf__ngram_range": "(1, 1)",
+          "tfidf__min_df": "3",
+          "tfidf__max_features": "10000",
+          "clf__solver": "saga",
+          "clf__penalty": "l1",
+          "clf__C": "5.0"
+        },
+        {
+          "tfidf__ngram_range": "(1, 3)",
+          "tfidf__min_df": "3",
+          "tfidf__max_features": "10000",
+          "clf__solver": "saga",
+          "clf__penalty": "l2",
+          "clf__C": "10.0"
+        },
+        {
+          "tfidf__ngram_range": "(1, 2)",
+          "tfidf__min_df": "3",
+          "tfidf__max_features": "2000",
+          "clf__solver": "saga",
+          "clf__penalty": "l2",
+          "clf__C": "10.0"
+        },
+        {
+          "tfidf__ngram_range": "(1, 1)",
+          "tfidf__min_df": "5",
+          "tfidf__max_features": "5000",
+          "clf__solver": "saga",
+          "clf__penalty": "l2",
+          "clf__C": "0.1"
+        }
+      ]
+    }
+  },
+  "best_model": "TF-IDF Text Classifier",
+  "best_pr_auc": 0.8746913674690603
+}
