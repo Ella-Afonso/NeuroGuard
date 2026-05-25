@@ -1,0 +1,197 @@
+{
+  "step": 18,
+  "description": "Error analysis and model interpretability",
+  "timestamp": "2026-05-25T18:39:05.101491",
+  "seed": 42,
+  "permutation_importance": {
+    "Logistic Regression": {
+      "top_5": [
+        {
+          "feature": "scenario_id_enc",
+          "importance": 0.47920433825576353
+        },
+        {
+          "feature": "citation_density",
+          "importance": 0.35583403775483075
+        },
+        {
+          "feature": "has_citations",
+          "importance": 0.2848177690285955
+        },
+        {
+          "feature": "nct_id_unique",
+          "importance": 0.2317950163513314
+        },
+        {
+          "feature": "response_length_chars",
+          "importance": 0.11409036265088598
+        }
+      ]
+    },
+    "Random Forest": {
+      "top_5": [
+        {
+          "feature": "scenario_id_enc",
+          "importance": 0.31198368353679545
+        },
+        {
+          "feature": "numbered_list_count",
+          "importance": 0.060722149806561716
+        },
+        {
+          "feature": "paragraph_count",
+          "importance": 0.015940573765773
+        },
+        {
+          "feature": "has_citations",
+          "importance": 0.014308659201186302
+        },
+        {
+          "feature": "citation_density",
+          "importance": 0.013995008148554203
+        }
+      ]
+    },
+    "XGBoost": {
+      "top_5": [
+        {
+          "feature": "response_length_words",
+          "importance": 0.1476072236454831
+        },
+        {
+          "feature": "numbered_list_count",
+          "importance": 0.10481197757462292
+        },
+        {
+          "feature": "scenario_id_enc",
+          "importance": 0.08675413965319016
+        },
+        {
+          "feature": "certainty_freq",
+          "importance": 0.008334345741307618
+        },
+        {
+          "feature": "avg_sentence_length",
+          "importance": 0.00552091715226077
+        }
+      ]
+    },
+    "LightGBM": {
+      "top_5": [
+        {
+          "feature": "scenario_id_enc",
+          "importance": 0.14546316121188185
+        },
+        {
+          "feature": "numbered_list_count",
+          "importance": 0.0372835820892448
+        },
+        {
+          "feature": "sentence_count",
+          "importance": 0.017479468386175537
+        },
+        {
+          "feature": "avg_sentence_length",
+          "importance": 0.010687280974661687
+        },
+        {
+          "feature": "response_length_words",
+          "importance": 0.007674061214095607
+        }
+      ]
+    }
+  },
+  "shap_consensus_top_10": {
+    "scenario_id_enc": 1.0,
+    "numbered_list_count": 2.3333333333333335,
+    "citation_density": 5.0,
+    "response_length_words": 5.0,
+    "sentence_count": 5.0,
+    "certainty_freq": 8.333333333333334,
+    "avg_sentence_length": 9.0,
+    "response_length_chars": 9.333333333333334,
+    "paragraph_count": 11.0,
+    "certainty_count": 11.333333333333334
+  },
+  "lr_coefficients": {
+    "top_5_unsafe": [
+      {
+        "feature": "nct_id_unique",
+        "coefficient": 2.297804668727769
+      },
+      {
+        "feature": "has_certainty",
+        "coefficient": 0.37313065987993926
+      },
+      {
+        "feature": "response_length_chars",
+        "coefficient": 0.3551086406586299
+      },
+      {
+        "feature": "has_hedging",
+        "coefficient": 0.20162071427424164
+      },
+      {
+        "feature": "bullet_count",
+        "coefficient": 0.1711014065625844
+      }
+    ],
+    "top_5_safe": [
+      {
+        "feature": "citation_density",
+        "coefficient": -1.5099407412882988
+      },
+      {
+        "feature": "scenario_id_enc",
+        "coefficient": -1.3802290296101214
+      },
+      {
+        "feature": "has_citations",
+        "coefficient": -0.9542661734041916
+      },
+      {
+        "feature": "hedging_certainty_ratio",
+        "coefficient": -0.5865524019107128
+      },
+      {
+        "feature": "sentence_count",
+        "coefficient": -0.5789318957013382
+      }
+    ]
+  },
+  "tfidf_text_classifier": {
+    "total_features": 10000,
+    "top_10_unsafe_tokens": [
+      "insufficient information",
+      "information",
+      "the patient",
+      "caide",
+      "caide follow",
+      "caide follow up",
+      "up",
+      "follow up",
+      "patient",
+      "follow"
+    ],
+    "top_10_safe_tokens": [
+      "efficacy",
+      "completed",
+      "alzheimer",
+      "safety",
+      "its",
+      "alzheimer disease",
+      "phase trial",
+      "from",
+      "trial",
+      "trials"
+    ]
+  },
+  "error_analysis": {
+    "model": "LightGBM (CV predictions)",
+    "n_false_negatives": 15,
+    "n_false_positives": 12,
+    "n_correct": 253,
+    "fn_rate": 0.39473684210526316,
+    "fp_rate": 0.049586776859504134
+  }
+}
