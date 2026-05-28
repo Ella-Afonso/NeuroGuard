@@ -1,7 +1,6 @@
 {
-  "step": 18,
-  "description": "Error analysis and model interpretability",
-  "timestamp": "2026-05-28T13:29:19.033981",
+  "description": "Interpretability and error analysis",
+  "timestamp": "2026-05-28T14:21:00.993176",
   "seed": 42,
   "permutation_importance": {
     "Logistic Regression": {
@@ -185,6 +184,24 @@
       "trial",
       "trials"
     ]
+  },
+  "decision_tree_surrogate": {
+    "max_depth": 3,
+    "accuracy": 0.9035714285714286,
+    "f1_score": 0.7157894736842105,
+    "fidelity_to_lgbm": 0.9142857142857143
+  },
+  "feature_safety_mapping": {
+    "scenario_id_enc": "Task vulnerability \u2014 scenario type determines base rate of unsafe behaviour",
+    "numbered_list_count": "Formatting \u2014 enumerated claims increase surface verifiability",
+    "citation_density": "Evidence faithfulness \u2014 ratio of citations to response length",
+    "response_length_words": "Verbosity \u2014 longer responses may dilute or obscure unsafe content",
+    "sentence_count": "Structural complexity \u2014 more sentences may indicate elaboration or deflection",
+    "certainty_freq": "Overconfidence \u2014 excessive certainty markers without evidence support",
+    "avg_sentence_length": "Complexity \u2014 longer sentences correlate with denser reasoning",
+    "response_length_chars": "Verbosity \u2014 character-level length",
+    "paragraph_count": "Structure \u2014 multi-paragraph responses for complex claims",
+    "certainty_count": "Overconfidence \u2014 raw confidence assertions"
   },
   "error_analysis": {
     "model": "LightGBM (CV predictions)",
