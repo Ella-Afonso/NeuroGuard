@@ -1,0 +1,269 @@
+{
+  "description": "Markov chain analysis of sequential behaviour in AI responses",
+  "timestamp": "2026-05-28T16:03:02.715517",
+  "seed": 42,
+  "method": {
+    "segmentation": "Sentence-level splitting with regex",
+    "states": [
+      "citing",
+      "hedging",
+      "claiming",
+      "refusing",
+      "neutral"
+    ],
+    "classification": "Rule-based keyword matching (citing, hedging, claiming, refusing, neutral)",
+    "estimation": "Maximum likelihood with Laplace smoothing"
+  },
+  "overall_stats": {
+    "total_sentences": 8309,
+    "sentences_per_response": {
+      "mean": 29.675,
+      "std": 19.88816627309047,
+      "min": 6,
+      "max": 141
+    },
+    "state_distribution": {
+      "citing": 0.10903839210494644,
+      "hedging": 0.08159826693946323,
+      "claiming": 0.3972800577686846,
+      "refusing": 0.008063545553014802,
+      "neutral": 0.404019737633891
+    }
+  },
+  "overall_transition_matrix": [
+    [
+      0.07095343680709534,
+      0.052106430155210645,
+      0.5842572062084257,
+      0.012195121951219513,
+      0.2804878048780488
+    ],
+    [
+      0.048589341692789965,
+      0.22100313479623823,
+      0.38557993730407525,
+      0.007836990595611285,
+      0.33699059561128525
+    ],
+    [
+      0.09818297736691106,
+      0.10296461587503984,
+      0.40675804909148866,
+      0.00956327701625757,
+      0.38253108065030283
+    ],
+    [
+      0.1,
+      0.07142857142857142,
+      0.21428571428571427,
+      0.02857142857142857,
+      0.5857142857142857
+    ],
+    [
+      0.14847293619594798,
+      0.049894163894768674,
+      0.3356516480193529,
+      0.00725733293014817,
+      0.45872391895978226
+    ]
+  ],
+  "stationary_distributions": {
+    "pressure_id": {
+      "authority": {
+        "stationary_dist": {
+          "citing": 0.09778264876376,
+          "hedging": 0.09187838937536952,
+          "claiming": 0.3399215084632941,
+          "refusing": 0.01072411265703608,
+          "neutral": 0.45969334074054036
+        },
+        "n_sessions": 40,
+        "n_transitions": 1284
+      },
+      "deadline": {
+        "stationary_dist": {
+          "citing": 0.11654210195139293,
+          "hedging": 0.07837962376194392,
+          "claiming": 0.3694783251350528,
+          "refusing": 0.013070941802170808,
+          "neutral": 0.4225290073494395
+        },
+        "n_sessions": 40,
+        "n_transitions": 983
+      },
+      "emotional_appeal": {
+        "stationary_dist": {
+          "citing": 0.11358475117946577,
+          "hedging": 0.09763950276922802,
+          "claiming": 0.4008018820157967,
+          "refusing": 0.014340794960613638,
+          "neutral": 0.37363306907489585
+        },
+        "n_sessions": 40,
+        "n_transitions": 1174
+      },
+      "hidden_instruction": {
+        "stationary_dist": {
+          "citing": 0.10644460320505583,
+          "hedging": 0.07511168027186015,
+          "claiming": 0.3732759422068289,
+          "refusing": 0.01070195266191708,
+          "neutral": 0.43446582165433806
+        },
+        "n_sessions": 40,
+        "n_transitions": 1112
+      },
+      "none": {
+        "stationary_dist": {
+          "citing": 0.1323268827740851,
+          "hedging": 0.0851565052206862,
+          "claiming": 0.41798879972532343,
+          "refusing": 0.01162678763696037,
+          "neutral": 0.352901024642945
+        },
+        "n_sessions": 40,
+        "n_transitions": 1104
+      },
+      "peer_disagreement": {
+        "stationary_dist": {
+          "citing": 0.1078360908335584,
+          "hedging": 0.08754813776984817,
+          "claiming": 0.4184864071198546,
+          "refusing": 0.0122977870744767,
+          "neutral": 0.3738315772022621
+        },
+        "n_sessions": 40,
+        "n_transitions": 1195
+      },
+      "sunk_cost": {
+        "stationary_dist": {
+          "citing": 0.11627198020376932,
+          "hedging": 0.09677169747268645,
+          "claiming": 0.41830414730909776,
+          "refusing": 0.015029428925866367,
+          "neutral": 0.3536227460885801
+        },
+        "n_sessions": 40,
+        "n_transitions": 1177
+      }
+    },
+    "scenario_id": {
+      "eligibility_triage": {
+        "stationary_dist": {
+          "citing": 0.0021722716747363574,
+          "hedging": 0.0196462842459877,
+          "claiming": 0.2736200665189369,
+          "refusing": 0.010819638636193651,
+          "neutral": 0.6937417389241455
+        },
+        "n_sessions": 70,
+        "n_transitions": 2882
+      },
+      "evidence_summarisation": {
+        "stationary_dist": {
+          "citing": 0.21557454447551183,
+          "hedging": 0.09117910405209131,
+          "claiming": 0.4758282562250474,
+          "refusing": 0.03547939452768053,
+          "neutral": 0.181938700719669
+        },
+        "n_sessions": 70,
+        "n_transitions": 841
+      },
+      "proposal_critique": {
+        "stationary_dist": {
+          "citing": 0.0469723018680008,
+          "hedging": 0.27383895924907375,
+          "claiming": 0.4556056702673472,
+          "refusing": 0.009450623765002344,
+          "neutral": 0.21413244485057592
+        },
+        "n_sessions": 70,
+        "n_transitions": 1880
+      },
+      "trial_ranking": {
+        "stationary_dist": {
+          "citing": 0.2546931331929766,
+          "hedging": 0.016850446801916507,
+          "claiming": 0.45412324899556394,
+          "refusing": 0.0028893747336981405,
+          "neutral": 0.2714437962758447
+        },
+        "n_sessions": 70,
+        "n_transitions": 2426
+      }
+    },
+    "monitoring_id": {
+      "monitored": {
+        "stationary_dist": {
+          "citing": 0.11221039884518341,
+          "hedging": 0.09046376629647125,
+          "claiming": 0.4026650696793597,
+          "refusing": 0.009561240584116119,
+          "neutral": 0.3850995245948694
+        },
+        "n_sessions": 140,
+        "n_transitions": 3956
+      },
+      "unmonitored": {
+        "stationary_dist": {
+          "citing": 0.11038108251996835,
+          "hedging": 0.08230469581803561,
+          "claiming": 0.38541286200543473,
+          "refusing": 0.009554614572650985,
+          "neutral": 0.41234674508391034
+        },
+        "n_sessions": 140,
+        "n_transitions": 4073
+      }
+    },
+    "overall_unsafe": {
+      "False": {
+        "stationary_dist": {
+          "citing": 0.1319647768254703,
+          "hedging": 0.09728771046240625,
+          "claiming": 0.42198689393740985,
+          "refusing": 0.008047834600485934,
+          "neutral": 0.3407127841742277
+        },
+        "n_sessions": 242,
+        "n_transitions": 6580
+      },
+      "True": {
+        "stationary_dist": {
+          "citing": 0.016343441209801163,
+          "hedging": 0.03734968090149676,
+          "claiming": 0.2675087046137921,
+          "refusing": 0.01634551604829979,
+          "neutral": 0.6624526572266101
+        },
+        "n_sessions": 38,
+        "n_transitions": 1449
+      }
+    }
+  },
+  "safe_vs_unsafe": {
+    "safe_stationary": {
+      "citing": 0.1319647768254703,
+      "hedging": 0.09728771046240625,
+      "claiming": 0.42198689393740985,
+      "refusing": 0.008047834600485934,
+      "neutral": 0.3407127841742277
+    },
+    "unsafe_stationary": {
+      "citing": 0.016343441209801163,
+      "hedging": 0.03734968090149676,
+      "claiming": 0.2675087046137921,
+      "refusing": 0.01634551604829979,
+      "neutral": 0.6624526572266101
+    },
+    "transition_diff_key": {
+      "claiming_to_citing_safe": 0.10941475826972011,
+      "claiming_to_citing_unsafe": 0.020460358056265986
+    },
+    "mean_first_passage_claiming_to_citing": {
+      "safe": 7.303625391399438,
+      "unsafe": 62.88684058208733
+    }
+  }
+}
