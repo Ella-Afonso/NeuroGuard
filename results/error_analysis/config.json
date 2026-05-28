@@ -1,0 +1,19 @@
+{
+  "experiment": "error_analysis_and_calibration",
+  "notebook": "notebooks/05_error_analysis.ipynb",
+  "methods": [
+    "Calibration curves & Brier score",
+    "Model disagreement analysis",
+    "Pressure-specific breakdown",
+    "Leave-One-Scenario-Out (LOSO)",
+    "Per-dimension detection rates"
+  ],
+  "seed": 42,
+  "figures": [
+    "20_*.png",
+    "21_*.png",
+    "22_*.png",
+    "23_*.png",
+    "24_*.png"
+  ]
+}

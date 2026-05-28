@@ -1,0 +1,26 @@
+{
+  "experiment": "markov_chain_sequential_analysis",
+  "notebook": "notebooks/07_markov_extension.ipynb",
+  "methods": [
+    "Sentence-level behavioural state classification",
+    "Transition matrix estimation (Laplace-smoothed MLE)",
+    "Stationary distribution analysis",
+    "Chi-squared homogeneity tests",
+    "Within-response drift analysis",
+    "Mean first passage time analysis"
+  ],
+  "states": [
+    "citing",
+    "hedging",
+    "claiming",
+    "refusing",
+    "neutral"
+  ],
+  "seed": 42,
+  "figures": [
+    "31_*.png",
+    "32_*.png",
+    "33_*.png",
+    "34_*.png"
+  ]
+}

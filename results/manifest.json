@@ -1,0 +1,304 @@
+{
+  "project": "NeuroGuard \u2014 AI Safety Behaviour Analysis",
+  "generated": "2026-05-28T17:15:44.222158",
+  "description": "Master index of all experimental results, figures, and configurations",
+  "experiments": {
+    "eda": {
+      "directory": "results/eda/",
+      "config": "results/eda/config.json",
+      "has_metrics": false,
+      "figures": [
+        "reports/figures/01_class_balance.png",
+        "reports/figures/02_pressure_unsafe_rate.png",
+        "reports/figures/03_pressure_monitoring_interaction.png",
+        "reports/figures/04_layer_a_signals.png",
+        "reports/figures/05_layer_b_distributions.png",
+        "reports/figures/06_layer_b_by_pressure.png",
+        "reports/figures/07_feature_distributions.png",
+        "reports/figures/08_correlation_matrix.png",
+        "reports/figures/09_scenario_pressure_heatmap.png"
+      ]
+    },
+    "classification": {
+      "directory": "results/classification/",
+      "config": "results/classification/config.json",
+      "has_metrics": true,
+      "metrics": "results/classification/metrics.json",
+      "timestamp": "2026-05-28T13:44:11.457259",
+      "description": "Advanced model comparison with nested CV and hyperparameter tuning",
+      "figures": [
+        "reports/figures/10_roc_pr_curves.png",
+        "reports/figures/11_confusion_matrices.png",
+        "reports/figures/12_feature_importance.png",
+        "reports/figures/13_model_comparison.png",
+        "reports/figures/14_advanced_model_comparison.png"
+      ]
+    },
+    "interpretability": {
+      "directory": "results/interpretability/",
+      "config": "results/interpretability/config.json",
+      "has_metrics": true,
+      "metrics": "results/interpretability/metrics.json",
+      "timestamp": "2026-05-28T14:21:00.993176",
+      "description": "Interpretability and error analysis",
+      "figures": [
+        "reports/figures/15_permutation_importance.png",
+        "reports/figures/16_shap_summary.png",
+        "reports/figures/17_lr_coefficients.png",
+        "reports/figures/18_tfidf_top_tokens.png",
+        "reports/figures/19_error_analysis.png",
+        "reports/figures/25_decision_tree.png"
+      ]
+    },
+    "error_analysis": {
+      "directory": "results/error_analysis/",
+      "config": "results/error_analysis/config.json",
+      "has_metrics": true,
+      "metrics": "results/error_analysis/metrics.json",
+      "timestamp": "2026-05-28T13:29:54.622971",
+      "description": "Error analysis: calibration, model disagreement, pressure breakdown, cross-scenario generalisation, per-dimension detection",
+      "figures": [
+        "reports/figures/20_calibration_analysis.png",
+        "reports/figures/21_model_disagreement.png",
+        "reports/figures/22_pressure_breakdown.png",
+        "reports/figures/23_loso_generalisation.png",
+        "reports/figures/24_dimension_detection.png"
+      ]
+    },
+    "bayesian": {
+      "directory": "results/bayesian/",
+      "config": "results/bayesian/config.json",
+      "has_metrics": true,
+      "metrics": "results/bayesian/metrics.json",
+      "timestamp": "2026-05-28T15:54:03.914267",
+      "description": "Bayesian analysis of AI safety behaviour under pressure",
+      "figures": [
+        "reports/figures/26_bayesian_pressure_posteriors.png",
+        "reports/figures/27_bayesian_pressure_contrasts.png",
+        "reports/figures/28_bayesian_monitoring_effect.png",
+        "reports/figures/29_bayesian_logistic_regression.png",
+        "reports/figures/30_bayesian_scenario_vulnerability.png"
+      ]
+    },
+    "markov": {
+      "directory": "results/markov/",
+      "config": "results/markov/config.json",
+      "has_metrics": true,
+      "metrics": "results/markov/metrics.json",
+      "timestamp": "2026-05-28T16:03:02.715517",
+      "description": "Markov chain analysis of sequential behaviour in AI responses",
+      "figures": [
+        "reports/figures/31_markov_transition_matrix.png",
+        "reports/figures/32_markov_stationary_distributions.png",
+        "reports/figures/33_markov_safe_vs_unsafe.png",
+        "reports/figures/34_markov_drift_analysis.png"
+      ]
+    }
+  },
+  "figures": [
+    {
+      "file": "reports/figures/01_class_balance.png",
+      "experiment": "eda",
+      "number": 1,
+      "name": "class_balance"
+    },
+    {
+      "file": "reports/figures/02_pressure_unsafe_rate.png",
+      "experiment": "eda",
+      "number": 2,
+      "name": "pressure_unsafe_rate"
+    },
+    {
+      "file": "reports/figures/03_pressure_monitoring_interaction.png",
+      "experiment": "eda",
+      "number": 3,
+      "name": "pressure_monitoring_interaction"
+    },
+    {
+      "file": "reports/figures/04_layer_a_signals.png",
+      "experiment": "eda",
+      "number": 4,
+      "name": "layer_a_signals"
+    },
+    {
+      "file": "reports/figures/05_layer_b_distributions.png",
+      "experiment": "eda",
+      "number": 5,
+      "name": "layer_b_distributions"
+    },
+    {
+      "file": "reports/figures/06_layer_b_by_pressure.png",
+      "experiment": "eda",
+      "number": 6,
+      "name": "layer_b_by_pressure"
+    },
+    {
+      "file": "reports/figures/07_feature_distributions.png",
+      "experiment": "eda",
+      "number": 7,
+      "name": "feature_distributions"
+    },
+    {
+      "file": "reports/figures/08_correlation_matrix.png",
+      "experiment": "eda",
+      "number": 8,
+      "name": "correlation_matrix"
+    },
+    {
+      "file": "reports/figures/09_scenario_pressure_heatmap.png",
+      "experiment": "eda",
+      "number": 9,
+      "name": "scenario_pressure_heatmap"
+    },
+    {
+      "file": "reports/figures/10_roc_pr_curves.png",
+      "experiment": "classification",
+      "number": 10,
+      "name": "roc_pr_curves"
+    },
+    {
+      "file": "reports/figures/11_confusion_matrices.png",
+      "experiment": "classification",
+      "number": 11,
+      "name": "confusion_matrices"
+    },
+    {
+      "file": "reports/figures/12_feature_importance.png",
+      "experiment": "classification",
+      "number": 12,
+      "name": "feature_importance"
+    },
+    {
+      "file": "reports/figures/13_model_comparison.png",
+      "experiment": "classification",
+      "number": 13,
+      "name": "model_comparison"
+    },
+    {
+      "file": "reports/figures/14_advanced_model_comparison.png",
+      "experiment": "classification",
+      "number": 14,
+      "name": "advanced_model_comparison"
+    },
+    {
+      "file": "reports/figures/15_permutation_importance.png",
+      "experiment": "interpretability",
+      "number": 15,
+      "name": "permutation_importance"
+    },
+    {
+      "file": "reports/figures/16_shap_summary.png",
+      "experiment": "interpretability",
+      "number": 16,
+      "name": "shap_summary"
+    },
+    {
+      "file": "reports/figures/17_lr_coefficients.png",
+      "experiment": "interpretability",
+      "number": 17,
+      "name": "lr_coefficients"
+    },
+    {
+      "file": "reports/figures/18_tfidf_top_tokens.png",
+      "experiment": "interpretability",
+      "number": 18,
+      "name": "tfidf_top_tokens"
+    },
+    {
+      "file": "reports/figures/19_error_analysis.png",
+      "experiment": "interpretability",
+      "number": 19,
+      "name": "error_analysis"
+    },
+    {
+      "file": "reports/figures/20_calibration_analysis.png",
+      "experiment": "error_analysis",
+      "number": 20,
+      "name": "calibration_analysis"
+    },
+    {
+      "file": "reports/figures/21_model_disagreement.png",
+      "experiment": "error_analysis",
+      "number": 21,
+      "name": "model_disagreement"
+    },
+    {
+      "file": "reports/figures/22_pressure_breakdown.png",
+      "experiment": "error_analysis",
+      "number": 22,
+      "name": "pressure_breakdown"
+    },
+    {
+      "file": "reports/figures/23_loso_generalisation.png",
+      "experiment": "error_analysis",
+      "number": 23,
+      "name": "loso_generalisation"
+    },
+    {
+      "file": "reports/figures/24_dimension_detection.png",
+      "experiment": "error_analysis",
+      "number": 24,
+      "name": "dimension_detection"
+    },
+    {
+      "file": "reports/figures/25_decision_tree.png",
+      "experiment": "interpretability",
+      "number": 25,
+      "name": "decision_tree"
+    },
+    {
+      "file": "reports/figures/26_bayesian_pressure_posteriors.png",
+      "experiment": "bayesian",
+      "number": 26,
+      "name": "bayesian_pressure_posteriors"
+    },
+    {
+      "file": "reports/figures/27_bayesian_pressure_contrasts.png",
+      "experiment": "bayesian",
+      "number": 27,
+      "name": "bayesian_pressure_contrasts"
+    },
+    {
+      "file": "reports/figures/28_bayesian_monitoring_effect.png",
+      "experiment": "bayesian",
+      "number": 28,
+      "name": "bayesian_monitoring_effect"
+    },
+    {
+      "file": "reports/figures/29_bayesian_logistic_regression.png",
+      "experiment": "bayesian",
+      "number": 29,
+      "name": "bayesian_logistic_regression"
+    },
+    {
+      "file": "reports/figures/30_bayesian_scenario_vulnerability.png",
+      "experiment": "bayesian",
+      "number": 30,
+      "name": "bayesian_scenario_vulnerability"
+    },
+    {
+      "file": "reports/figures/31_markov_transition_matrix.png",
+      "experiment": "markov",
+      "number": 31,
+      "name": "markov_transition_matrix"
+    },
+    {
+      "file": "reports/figures/32_markov_stationary_distributions.png",
+      "experiment": "markov",
+      "number": 32,
+      "name": "markov_stationary_distributions"
+    },
+    {
+      "file": "reports/figures/33_markov_safe_vs_unsafe.png",
+      "experiment": "markov",
+      "number": 33,
+      "name": "markov_safe_vs_unsafe"
+    },
+    {
+      "file": "reports/figures/34_markov_drift_analysis.png",
+      "experiment": "markov",
+      "number": 34,
+      "name": "markov_drift_analysis"
+    }
+  ]
+}

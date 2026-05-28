@@ -1,0 +1,34 @@
+{
+  "experiment": "ml_classification_and_advanced_models",
+  "notebooks": [
+    "notebooks/02_ml_classification.ipynb",
+    "notebooks/03_advanced_models.ipynb"
+  ],
+  "data_sources": [
+    "data/processed/d2a_sessions.parquet",
+    "data/processed/d2b_turns.parquet",
+    "data/processed/d2c_labels.parquet",
+    "data/processed/d2d_features.parquet"
+  ],
+  "seed": 42,
+  "cv_strategy": "StratifiedKFold(n_splits=5)",
+  "inner_cv": "StratifiedKFold(n_splits=3)",
+  "tuning": "RandomizedSearchCV(n_iter=80)",
+  "models": [
+    "LogisticRegression",
+    "RandomForest",
+    "SVM",
+    "MLP",
+    "XGBoost",
+    "LightGBM",
+    "TF-IDF + LogisticRegression"
+  ],
+  "class_weight": "balanced",
+  "figures": [
+    "10_*.png",
+    "11_*.png",
+    "12_*.png",
+    "13_*.png",
+    "14_*.png"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "experiment": "bayesian_analysis",
+  "notebook": "notebooks/06_bayesian_extension.ipynb",
+  "methods": [
+    "Beta-Binomial conjugate model",
+    "Bayesian logistic regression (PyMC)",
+    "Posterior condition contrasts"
+  ],
+  "seed": 42,
+  "mcmc": {
+    "draws": 2000,
+    "tune": 1000,
+    "chains": 2,
+    "target_accept": 0.9
+  },
+  "prior": "Beta(1, 1) \u2014 weakly informative",
+  "figures": [
+    "26_*.png",
+    "27_*.png",
+    "28_*.png",
+    "29_*.png",
+    "30_*.png"
+  ]
+}

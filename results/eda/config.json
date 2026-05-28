@@ -1,0 +1,21 @@
+{
+  "experiment": "exploratory_data_analysis",
+  "notebook": "notebooks/01_eda.ipynb",
+  "data_sources": [
+    "data/processed/d2a_sessions.parquet",
+    "data/processed/d2c_labels.parquet",
+    "data/processed/d2d_features.parquet"
+  ],
+  "seed": 42,
+  "figures": [
+    "01_*.png",
+    "02_*.png",
+    "03_*.png",
+    "04_*.png",
+    "05_*.png",
+    "06_*.png",
+    "07_*.png",
+    "08_*.png",
+    "09_*.png"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "experiment": "model_interpretability_and_feature_analysis",
+  "notebook": "notebooks/04_interpretability.ipynb",
+  "methods": [
+    "Permutation Importance",
+    "SHAP TreeExplainer",
+    "Logistic Regression Coefficients",
+    "TF-IDF Top Tokens",
+    "Decision Tree Surrogate (depth=3)",
+    "Feature-Safety Hypothesis Mapping"
+  ],
+  "seed": 42,
+  "figures": [
+    "15_*.png",
+    "16_*.png",
+    "17_*.png",
+    "18_*.png",
+    "19_*.png",
+    "25_*.png"
+  ]
+}
