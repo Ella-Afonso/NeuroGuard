@@ -1,5 +1,4 @@
 {
-  "step": 17,
   "description": "Advanced model comparison with nested CV and hyperparameter tuning",
   "timestamp": "2026-05-25T12:03:48.019474",
   "seed": 42,

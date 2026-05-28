@@ -5,7 +5,7 @@ Intermediate outputs from model-agent simulations. **Contents are gitignored.**
 Human-inspectable JSONL format — the bridge between raw simulation output
 and the ML-ready Parquet tables in `data/processed/`.
 
-## Expected contents (after Step 12)
+## Expected contents
 
 - `sessions.jsonl` — One JSON object per line, one per simulation session.
 - `turns.jsonl` — One JSON object per line, one per conversation turn.

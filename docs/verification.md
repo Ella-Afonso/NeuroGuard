@@ -11,7 +11,7 @@ this module.
 
 ## Why this comes before the LLM judge
 
-LLM-judges (Layer B, Step 11) are useful for nuance — detecting
+LLM-judges (Layer B) are useful for nuance — detecting
 sycophancy, recognising misleading framings, judging rationale quality.
 But an evaluation built only on LLM-judging-LLM is circular and
 reviewer-skeptical. Layer A anchors the analysis with checks no

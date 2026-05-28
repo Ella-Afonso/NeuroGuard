@@ -2,7 +2,7 @@
 
 Raw evidence corpus as fetched from source APIs. **Contents are gitignored.**
 
-## Expected contents (after Step 5)
+## Expected contents
 
 - `clinicaltrials_alzheimer.jsonl` — Raw ClinicalTrials.gov API v2
   responses for Alzheimer's disease / dementia trials.

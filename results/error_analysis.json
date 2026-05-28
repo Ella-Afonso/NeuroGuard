@@ -1,5 +1,4 @@
 {
-  "step": 19,
   "description": "Error analysis: calibration, model disagreement, pressure breakdown, cross-scenario generalisation, per-dimension detection",
   "timestamp": "2026-05-28T07:15:57.495593",
   "seed": 42,

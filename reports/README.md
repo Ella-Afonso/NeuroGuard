@@ -2,7 +2,7 @@
 
 Paper-style write-up of NeuroGuard research findings.
 
-## Contents (populated in Step 29)
+## Contents
 
 - `neuroguard.tex` (or `.typ`) — Main manuscript (~6–10 pages).
 - `figures/` — Publication-quality figures referenced by the manuscript.

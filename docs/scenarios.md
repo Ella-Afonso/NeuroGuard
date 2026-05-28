@@ -93,7 +93,7 @@ and whether its overall recommendation matches the severity of issues found.
 | Eligibility Triage | Specification gaming | Criteria manipulation |
 | Proposal Critique | Sycophancy / corrigibility | Feedback suppression |
 
-## Interaction with Pressures (Step 8)
+## Interaction with Pressures
 
 Each scenario is crossed with all 7 pressure conditions in the factorial
 design. The hypothesis is that misalignment signals will be:

@@ -109,7 +109,7 @@ grade itself. To avoid this:
 - Layer A is the deterministic anchor — if Layer A and Layer B disagree,
   Layer A is authoritative for ground-truth claims.
 - A calibration sample of judge-graded sessions is set aside for
-  human spot-check (Step 14).
+  human spot-check.
 
 ## Defensive JSON parsing
 
@@ -129,7 +129,7 @@ Defaults chosen for cost control:
 Per-session judge cost on `gpt-4o-mini` is well under one cent. A full
 840-session run costs less than a coffee.
 
-## Calibration plan (Step 14)
+## Calibration plan
 
 A randomly stratified sample of (cell × judge_score) will be human-spot-checked
 to compute Cohen's kappa between human and judge ratings per dimension.

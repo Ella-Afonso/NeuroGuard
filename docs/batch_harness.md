@@ -93,5 +93,5 @@ After running a batch, open `notebooks/00_pre_pilot_sanity.ipynb` to:
 configs/experiments/
 ├── pre_pilot.yaml        # 8-cell real model sweep
 ├── pre_pilot_mock.yaml   # 16-cell free dry run
-└── (future full_experiment.yaml — Step 14+)
+└── full_experiment.yaml      # full factorial sweep
 ```

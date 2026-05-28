@@ -169,10 +169,10 @@ operationalises a scalable-oversight failure.
 ## 10. Open decisions tracked here
 
 - **Human labelling of ~150 sessions for Layer C** — default: yes.
-  Confirm by Step 12.
-- **Model provider mix** — defer to Step 10. Candidate slots:
+  Confirm before data collection.
+- **Model provider mix** — to be decided. Candidate slots:
   one frontier-closed, one frontier-open, one smaller-open.
 
 ---
 
-*Document version: 0.1.0 — initial lock-in at Step 1.*
+*Document version: 0.1.0 — initial lock-in.*
