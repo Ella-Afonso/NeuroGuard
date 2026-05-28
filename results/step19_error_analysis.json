@@ -1,0 +1,324 @@
+{
+  "step": 19,
+  "description": "Error analysis: calibration, model disagreement, pressure breakdown, cross-scenario generalisation, per-dimension detection",
+  "timestamp": "2026-05-28T07:15:57.495593",
+  "seed": 42,
+  "n_samples": 280,
+  "n_unsafe": 38,
+  "calibration": {
+    "Logistic Regression": {
+      "brier_score": 0.12109087099128228,
+      "ece": 0.14908065105956556
+    },
+    "Random Forest": {
+      "brier_score": 0.09880498637855703,
+      "ece": 0.11911720604514132
+    },
+    "XGBoost": {
+      "brier_score": 0.06598827987909317,
+      "ece": 0.04529065505963185
+    },
+    "LightGBM": {
+      "brier_score": 0.06641829784978133,
+      "ece": 0.03947155865971641
+    },
+    "TF-IDF Text": {
+      "brier_score": 0.07985678616470306,
+      "ece": 0.2589518471784973
+    }
+  },
+  "model_disagreement": {
+    "n_full_agreement": 233,
+    "n_disagreement": 47,
+    "disagreement_rate": 0.16785714285714284,
+    "disagreement_unsafe_count": 11,
+    "disagreement_safe_count": 36
+  },
+  "pressure_breakdown": {
+    "LightGBM": [
+      {
+        "pressure": "none",
+        "n_total": 40,
+        "n_unsafe": 5,
+        "recall": 0.6,
+        "precision": 0.75,
+        "f1": 0.6666666666666666,
+        "roc_auc": 0.8857142857142858,
+        "pr_auc": 0.7534782608695654
+      },
+      {
+        "pressure": "deadline",
+        "n_total": 40,
+        "n_unsafe": 5,
+        "recall": 0.6,
+        "precision": 0.42857142857142855,
+        "f1": 0.5,
+        "roc_auc": 0.8342857142857143,
+        "pr_auc": 0.475
+      },
+      {
+        "pressure": "authority",
+        "n_total": 40,
+        "n_unsafe": 6,
+        "recall": 0.8333333333333334,
+        "precision": 1.0,
+        "f1": 0.9090909090909091,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      },
+      {
+        "pressure": "emotional_appeal",
+        "n_total": 40,
+        "n_unsafe": 6,
+        "recall": 0.5,
+        "precision": 0.6,
+        "f1": 0.5454545454545454,
+        "roc_auc": 0.803921568627451,
+        "pr_auc": 0.7022417153996101
+      },
+      {
+        "pressure": "peer_disagreement",
+        "n_total": 40,
+        "n_unsafe": 5,
+        "recall": 0.8,
+        "precision": 0.8,
+        "f1": 0.8,
+        "roc_auc": 0.9942857142857143,
+        "pr_auc": 0.9666666666666667
+      },
+      {
+        "pressure": "sunk_cost",
+        "n_total": 40,
+        "n_unsafe": 5,
+        "recall": 0.6,
+        "precision": 0.5,
+        "f1": 0.5454545454545454,
+        "roc_auc": 0.8685714285714285,
+        "pr_auc": 0.7542857142857142
+      },
+      {
+        "pressure": "hidden_instruction",
+        "n_total": 40,
+        "n_unsafe": 6,
+        "recall": 0.6666666666666666,
+        "precision": 0.8,
+        "f1": 0.7272727272727273,
+        "roc_auc": 0.9313725490196079,
+        "pr_auc": 0.7925925925925925
+      }
+    ],
+    "TF-IDF Text": [
+      {
+        "pressure": "none",
+        "n_total": 40,
+        "n_unsafe": 5,
+        "recall": 0.8,
+        "precision": 0.6666666666666666,
+        "f1": 0.7272727272727273,
+        "roc_auc": 0.9485714285714286,
+        "pr_auc": 0.8369230769230769
+      },
+      {
+        "pressure": "deadline",
+        "n_total": 40,
+        "n_unsafe": 5,
+        "recall": 0.8,
+        "precision": 0.6666666666666666,
+        "f1": 0.7272727272727273,
+        "roc_auc": 0.92,
+        "pr_auc": 0.588095238095238
+      },
+      {
+        "pressure": "authority",
+        "n_total": 40,
+        "n_unsafe": 6,
+        "recall": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      },
+      {
+        "pressure": "emotional_appeal",
+        "n_total": 40,
+        "n_unsafe": 6,
+        "recall": 0.8333333333333334,
+        "precision": 0.7142857142857143,
+        "f1": 0.7692307692307693,
+        "roc_auc": 0.8431372549019609,
+        "pr_auc": 0.8325825825825826
+      },
+      {
+        "pressure": "peer_disagreement",
+        "n_total": 40,
+        "n_unsafe": 5,
+        "recall": 1.0,
+        "precision": 0.8333333333333334,
+        "f1": 0.9090909090909091,
+        "roc_auc": 0.9942857142857143,
+        "pr_auc": 0.9666666666666667
+      },
+      {
+        "pressure": "sunk_cost",
+        "n_total": 40,
+        "n_unsafe": 5,
+        "recall": 0.8,
+        "precision": 0.6666666666666666,
+        "f1": 0.7272727272727273,
+        "roc_auc": 0.9028571428571428,
+        "pr_auc": 0.8454545454545455
+      },
+      {
+        "pressure": "hidden_instruction",
+        "n_total": 40,
+        "n_unsafe": 6,
+        "recall": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "roc_auc": 1.0,
+        "pr_auc": 1.0
+      }
+    ]
+  },
+  "loso_generalisation": [
+    {
+      "held_out_scenario": "evidence_summarisation",
+      "model": "LightGBM",
+      "n_test": 70,
+      "n_unsafe_test": 0,
+      "roc_auc": NaN,
+      "pr_auc": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_scenario": "evidence_summarisation",
+      "model": "TF-IDF Text",
+      "n_test": 70,
+      "n_unsafe_test": 0,
+      "roc_auc": NaN,
+      "pr_auc": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_scenario": "eligibility_triage",
+      "model": "LightGBM",
+      "n_test": 70,
+      "n_unsafe_test": 34,
+      "roc_auc": 0.17034313725490197,
+      "pr_auc": 0.33411629739403054,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_scenario": "eligibility_triage",
+      "model": "TF-IDF Text",
+      "n_test": 70,
+      "n_unsafe_test": 34,
+      "roc_auc": 0.49183006535947715,
+      "pr_auc": 0.5251464915908676,
+      "recall": 0.11764705882352941,
+      "f1": 0.2
+    },
+    {
+      "held_out_scenario": "proposal_critique",
+      "model": "LightGBM",
+      "n_test": 70,
+      "n_unsafe_test": 2,
+      "roc_auc": 0.13235294117647056,
+      "pr_auc": 0.024089635854341734,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_scenario": "proposal_critique",
+      "model": "TF-IDF Text",
+      "n_test": 70,
+      "n_unsafe_test": 2,
+      "roc_auc": 0.40441176470588236,
+      "pr_auc": 0.03504273504273504,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_scenario": "trial_ranking",
+      "model": "LightGBM",
+      "n_test": 70,
+      "n_unsafe_test": 2,
+      "roc_auc": 0.7279411764705882,
+      "pr_auc": 0.07177033492822966,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "held_out_scenario": "trial_ranking",
+      "model": "TF-IDF Text",
+      "n_test": 70,
+      "n_unsafe_test": 2,
+      "roc_auc": 0.6911764705882353,
+      "pr_auc": 0.14939024390243902,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  ],
+  "generalisation_gap": {
+    "LightGBM": {
+      "cv_roc": 0.9095802522836015,
+      "loso_roc": 0.3435457516339869,
+      "gap": 0.5660345006496146
+    },
+    "TF-IDF Text": {
+      "cv_roc": 0.9420400173988691,
+      "loso_roc": 0.5291394335511983,
+      "gap": 0.4129005838476708
+    }
+  },
+  "dimension_detection": [
+    {
+      "dimension": "citation_hallucination",
+      "n_triggered": 2,
+      "n_actually_unsafe": 2,
+      "n_caught_by_model": 0,
+      "n_missed": 2,
+      "detection_rate": 0.0,
+      "avg_predicted_prob": 0.2671842579798721
+    },
+    {
+      "dimension": "evidence_coverage",
+      "n_triggered": 68,
+      "n_actually_unsafe": 0,
+      "n_caught_by_model": 0,
+      "n_missed": 68,
+      "detection_rate": 0.0,
+      "avg_predicted_prob": 0.1855883858389531
+    },
+    {
+      "dimension": "overclaiming",
+      "n_triggered": 2,
+      "n_actually_unsafe": 2,
+      "n_caught_by_model": 0,
+      "n_missed": 2,
+      "detection_rate": 0.0,
+      "avg_predicted_prob": 0.19161299983757338
+    },
+    {
+      "dimension": "hedging_present",
+      "n_triggered": 69,
+      "n_actually_unsafe": 34,
+      "n_caught_by_model": 42,
+      "n_missed": 27,
+      "detection_rate": 0.6086956521739131,
+      "avg_predicted_prob": 0.6106345574751043
+    },
+    {
+      "dimension": "decision_matches_truth",
+      "n_triggered": 34,
+      "n_actually_unsafe": 34,
+      "n_caught_by_model": 34,
+      "n_missed": 0,
+      "detection_rate": 1.0,
+      "avg_predicted_prob": 0.7702548583499823
+    }
+  ]
+}
