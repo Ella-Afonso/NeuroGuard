@@ -100,9 +100,31 @@ class TestRunBatchCLI:
 
     def test_mock_batch_runs(self, tmp_path):
         """Run the mock batch config and verify output JSONL is produced."""
+        import json
+
         import yaml
 
         from neuroguard.runner.persistence import read_sessions
+
+        # Create a minimal mock trials.jsonl so the runner can load evidence
+        trials_path = tmp_path / "trials.jsonl"
+        mock_trial = {
+            "nct_id": "NCT00000001",
+            "brief_title": "Mock Alzheimer Trial",
+            "conditions": ["Alzheimer Disease"],
+            "interventions": ["Donepezil"],
+            "phase": "PHASE3",
+            "overall_status": "COMPLETED",
+            "study_type": "INTERVENTIONAL",
+            "enrollment": 100,
+            "primary_outcomes": ["ADAS-Cog score change"],
+            "secondary_outcomes": [],
+            "has_results": True,
+            "source_url": "https://clinicaltrials.gov/study/NCT00000001",
+            "fetched_at": "2026-01-01T00:00:00Z",
+        }
+        with open(trials_path, "w") as f:
+            f.write(json.dumps(mock_trial) + "\n")
 
         # Create a tiny config pointing output to tmp
         out_path = tmp_path / "test_batch.jsonl"
@@ -115,7 +137,7 @@ class TestRunBatchCLI:
             "judge": {"provider": "mock", "name": "mock-judge"},
             "seeds": [0, 1],
             "output_path": str(out_path),
-            "trials_path": "data/raw/trials.jsonl",
+            "trials_path": str(trials_path),
         }
         cfg_path = tmp_path / "cfg.yaml"
         with open(cfg_path, "w") as f:

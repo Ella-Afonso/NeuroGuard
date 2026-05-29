@@ -195,7 +195,7 @@ def assemble_dataset_cmd(
     typer.echo(f"  D2b turns:    {len(result['d2b'])} rows")
     typer.echo(f"  D2c labels:   {len(result['d2c'])} rows")
     typer.echo(
-        f"  D2d features: {len(result['d2d'])} rows ({len(result['d2d'].columns)-1} features)"
+        f"  D2d features: {len(result['d2d'])} rows ({len(result['d2d'].columns) - 1} features)"
     )
     typer.echo(f"\nParquet files: {out}/")
     typer.echo(f"JSONL mirrors: {out.parent / 'interim'}/")
