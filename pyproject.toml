@@ -62,6 +62,7 @@ viz = [
     "matplotlib>=3.7",
     "seaborn>=0.12",
     "plotly>=5.15",
+    "streamlit>=1.30",
 ]
 providers = [
     "anthropic>=0.25",
@@ -88,7 +89,7 @@ all = [
 neuroguard = "neuroguard.cli:app"
 
 [project.urls]
-Repository = "https://github.com/Ella-Afonso/Neurouard"
+Repository = "https://github.com/Ella-Afonso/NeuroGuard"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/neuroguard"]

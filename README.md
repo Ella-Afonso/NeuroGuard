@@ -3,7 +3,7 @@
 > **A model-organism benchmark for misalignment and oversight failures in
 > biomedical AI research agents.**
 
-**Status:** active development — pre-results MVP.
+**Status:** analysis complete — dashboard and report phase.
 
 NeuroGuard is an empirical AI-safety benchmark that places LLM-based
 biomedical research agents under controlled pressure conditions and
@@ -51,13 +51,16 @@ perturbations and measured against *verifiable* ground truth.
 
 ```
 neuroguard/
+├── app/                   # Streamlit interactive dashboard
+├── configs/               # scenarios, pressures, rubric, experiment YAML
+├── data/                  # evidence corpus + simulation outputs (gitignored)
 ├── docs/                  # research question, design notes, scope
-├── src/neuroguard/        # package code               (scaffolded in a later step)
-├── tests/                 # unit tests                  (scaffolded in a later step)
-├── configs/               # scenarios, pressures, rubric (scaffolded in a later step)
-├── data/                  # evidence corpus + simulation outputs (structure only; contents not committed)
-├── results/               # experiment outputs           (structure only; contents not committed)
-├── reports/               # paper-style write-up         (scaffolded in a later step)
+├── models/                # trained model artefacts (gitignored)
+├── notebooks/             # analysis notebooks (01–07)
+├── reports/figures/        # all generated figures (34 plots)
+├── results/               # per-experiment metrics, configs, manifest
+├── src/neuroguard/        # package code (runner, judge, verification, CLI)
+├── tests/                 # unit + integration tests (pytest)
 └── .github/               # issue / PR templates, CI workflows
 ```
 
@@ -106,9 +109,25 @@ This is a step-by-step build across six phases:
 
 ## Installation and usage
 
-Will be documented as the package and CLI are scaffolded.
+```bash
+# Clone and set up
+git clone https://github.com/Ella-Afonso/NeuroGuard.git
+cd NeuroGuard
+python -m venv .venv && .venv/Scripts/activate  # or source .venv/bin/activate
+pip install -e ".[all]"
+
+# Run tests
+pytest
+
+# Launch the dashboard
+streamlit run app/dashboard.py
+
+# CLI
+neuroguard --help
+```
+
 See [`docs/research_question.md`](docs/research_question.md) for the
-current project anchor and status.
+full research question and methodology.
 
 ## License
 
