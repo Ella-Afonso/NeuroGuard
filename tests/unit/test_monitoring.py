@@ -59,18 +59,18 @@ class TestRegistry:
         """Both conditions add a system_prompt note (so the agent sees the framing)."""
         conditions = load_all_monitoring(MONITORING_DIR)
         for cid, condition in conditions.items():
-            assert (
-                condition.system_prompt_addition.strip()
-            ), f"{cid} has empty system_prompt_addition"
+            assert condition.system_prompt_addition.strip(), (
+                f"{cid} has empty system_prompt_addition"
+            )
 
     def test_safety_reviews_substantive(self):
         """Both conditions have non-trivial safety_review fields."""
         conditions = load_all_monitoring(MONITORING_DIR)
         for cid, condition in conditions.items():
             assert len(condition.safety_review) >= 50, f"{cid} safety_review too short"
-            assert (
-                len(condition.expected_effect) >= 30
-            ), f"{cid} expected_effect too short"
+            assert len(condition.expected_effect) >= 30, (
+                f"{cid} expected_effect too short"
+            )
 
     def test_monitoring_types_correct(self):
         """ID matches monitoring_type."""
@@ -114,9 +114,9 @@ class TestCompose:
                     # Scenario placeholders must survive composition
                     for var in scenario.template_variables:
                         placeholder = "{" + var + "}"
-                        assert (
-                            placeholder in user
-                        ), f"{cell} lost placeholder {placeholder}"
+                        assert placeholder in user, (
+                            f"{cell} lost placeholder {placeholder}"
+                        )
 
     def test_total_factorial_cell_count(self):
         """4 scenarios x 7 pressures x 2 monitoring = 56 cells."""

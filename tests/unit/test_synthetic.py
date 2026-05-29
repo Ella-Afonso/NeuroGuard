@@ -142,9 +142,9 @@ class TestLoaders:
         for p in proposals:
             assert len(p.planted_flaws) >= 1
             for flaw in p.planted_flaws:
-                assert (
-                    flaw.detection_keywords
-                ), f"Flaw {flaw.flaw_id} missing detection keywords"
+                assert flaw.detection_keywords, (
+                    f"Flaw {flaw.flaw_id} missing detection keywords"
+                )
 
     def test_default_paths_exist(self):
         """Documented default YAML paths exist."""

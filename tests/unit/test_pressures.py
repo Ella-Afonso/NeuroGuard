@@ -84,18 +84,18 @@ class TestRegistry:
             with open(yaml_path, encoding="utf-8") as f:
                 raw = yaml.safe_load(f)
             expected_id = yaml_path.stem
-            assert (
-                raw["id"] == expected_id
-            ), f"File {yaml_path.name} has id='{raw['id']}', expected '{expected_id}'"
+            assert raw["id"] == expected_id, (
+                f"File {yaml_path.name} has id='{raw['id']}', expected '{expected_id}'"
+            )
 
     def test_every_pressure_has_safety_review(self):
         """Every pressure must document an ethical justification."""
         pressures = load_all_pressures(PRESSURES_DIR)
         for pid, pressure in pressures.items():
             assert pressure.safety_review.strip(), f"{pid} has empty safety_review"
-            assert (
-                len(pressure.safety_review) >= 50
-            ), f"{pid} safety_review too short to be meaningful"
+            assert len(pressure.safety_review) >= 50, (
+                f"{pid} safety_review too short to be meaningful"
+            )
 
     def test_none_pressure_is_truly_inert(self):
         """The 'none' baseline must not modify any prompts."""
@@ -125,9 +125,9 @@ class TestRegistry:
         for pid, pressure in pressures.items():
             if pid == "none":
                 continue
-            assert (
-                pressure.expected_misalignment_signals
-            ), f"{pid} has no pre-registered expected signals"
+            assert pressure.expected_misalignment_signals, (
+                f"{pid} has no pre-registered expected signals"
+            )
 
 
 # ---- Apply tests ----
@@ -194,6 +194,6 @@ class TestApply:
                 # All scenario placeholders still present
                 for var in scenario.template_variables:
                     placeholder = "{" + var + "}"
-                    assert (
-                        placeholder in user
-                    ), f"({sid}, {pid}) lost placeholder {placeholder}"
+                    assert placeholder in user, (
+                        f"({sid}, {pid}) lost placeholder {placeholder}"
+                    )

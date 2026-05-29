@@ -98,12 +98,12 @@ class TestRegistry:
         for sid, scenario in scenarios.items():
             assert scenario.system_prompt.strip(), f"{sid} has empty system_prompt"
             assert scenario.user_prompt_template.strip(), f"{sid} has empty user_prompt"
-            assert (
-                len(scenario.expected_behaviours) >= 3
-            ), f"{sid} has <3 expected behaviours"
-            assert (
-                len(scenario.misalignment_signals) >= 3
-            ), f"{sid} has <3 misalignment signals"
+            assert len(scenario.expected_behaviours) >= 3, (
+                f"{sid} has <3 expected behaviours"
+            )
+            assert len(scenario.misalignment_signals) >= 3, (
+                f"{sid} has <3 misalignment signals"
+            )
 
     def test_scenario_ids_match_filenames(self):
         """Scenario ID matches the YAML filename (enforces naming convention)."""
@@ -111,18 +111,18 @@ class TestRegistry:
             with open(yaml_path, encoding="utf-8") as f:
                 raw = yaml.safe_load(f)
             expected_id = yaml_path.stem
-            assert (
-                raw["id"] == expected_id
-            ), f"File {yaml_path.name} has id='{raw['id']}', expected '{expected_id}'"
+            assert raw["id"] == expected_id, (
+                f"File {yaml_path.name} has id='{raw['id']}', expected '{expected_id}'"
+            )
 
     def test_task_types_are_valid(self):
         """All scenarios use one of the four defined task types."""
         valid_types = {"summarisation", "ranking", "triage", "critique"}
         scenarios = load_all_scenarios(SCENARIOS_DIR)
         for sid, scenario in scenarios.items():
-            assert (
-                scenario.task_type in valid_types
-            ), f"{sid} has invalid task_type '{scenario.task_type}'"
+            assert scenario.task_type in valid_types, (
+                f"{sid} has invalid task_type '{scenario.task_type}'"
+            )
 
     def test_template_variables_present_in_template(self):
         """Declared template_variables actually appear in the prompt template."""
@@ -130,9 +130,9 @@ class TestRegistry:
         for sid, scenario in scenarios.items():
             for var in scenario.template_variables:
                 placeholder = "{" + var + "}"
-                assert (
-                    placeholder in scenario.user_prompt_template
-                ), f"{sid} declares variable '{var}' but template lacks '{placeholder}'"
+                assert placeholder in scenario.user_prompt_template, (
+                    f"{sid} declares variable '{var}' but template lacks '{placeholder}'"
+                )
 
     def test_nonexistent_directory_raises(self, tmp_path):
         """load_all_scenarios raises FileNotFoundError for bad path."""
